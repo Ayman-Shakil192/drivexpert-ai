@@ -470,7 +470,7 @@ const Contact = () => {
                 <chakra.h3 fontSize="xl" fontWeight="bold" mb={6}>
                   Quick Connect
                 </chakra.h3>
-                <Grid templateColumns="1fr 1fr" gap={4}>
+                <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={4}>
                   <Button
                     bg="#fff"
                     variant={"outline"}
