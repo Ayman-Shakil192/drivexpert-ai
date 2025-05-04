@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 import logo from "../assets/images/logo-text-with-icon-removebg-preview.png";
@@ -9,21 +9,13 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  // Navigation items with icons
   const navigation = [
     { name: "About", to: "about" },
     { name: "Features", to: "features" },
-    {
-      name: "Testimonials",
-      to: "testimonials",
-    },
-    {
-      name: "Contact",
-      to: "contact",
-    },
+    { name: "Testimonials", to: "testimonials" },
+    { name: "Contact", to: "contact" },
   ];
 
-  // Handle scroll event to change navbar appearance
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -32,7 +24,6 @@ const Navbar = () => {
         setScrolled(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -45,7 +36,6 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          {/* Logo - Fixed dimensions and object-fit for consistent rendering */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -144,12 +134,12 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu - With simpler animation for better cross-browser compatibility */}
+      {/* Mobile menu */}
       {isOpen && (
-        <div className="lg:hidden bg-white shadow-lg overflow-hidden">
-          <div className="px-4 pt-2 pb-3 space-y-1">
-            {navigation.map((item, index) => (
-              <div key={item.name} className="py-1">
+        <div className="absolute top-full left-0 right-0 w-full bg-white shadow-lg z-40 lg:hidden">
+          <div className="flex flex-col items-start px-4 pt-2 pb-3 space-y-1">
+            {navigation.map((item) => (
+              <div key={item.name} className="w-full">
                 {item.hasDropdown ? (
                   <div>
                     <button
@@ -188,10 +178,10 @@ const Navbar = () => {
                     offset={-70}
                     duration={500}
                     activeClass="text-blue-600"
-                    className="flex items-center space-x-2 px-3 py-2 text-base font-medium text-gray-700 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors duration-300"
+                    className="w-full text-left px-3 py-2 text-base font-medium text-gray-700 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors duration-300"
                     onClick={() => setIsOpen(false)}
                   >
-                    <span>{item.name}</span>
+                    {item.name}
                   </Link>
                 )}
               </div>
