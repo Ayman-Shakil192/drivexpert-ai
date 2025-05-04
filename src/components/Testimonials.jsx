@@ -110,7 +110,7 @@ const Testimonials = () => {
   return (
     <section
       id="testimonials"
-      className="py-24 px-4 bg-gradient-to-br from-blue-50 to-white overflow-hidden"
+      className="py-16 md:py-24 px-4 bg-gradient-to-br from-blue-50 to-white overflow-hidden"
       ref={ref}
     >
       <div className="container mx-auto">
@@ -120,30 +120,32 @@ const Testimonials = () => {
           variants={containerVariants}
           className="max-w-6xl mx-auto"
         >
-          {/* Section header */}
+          {/* Section header - More compact for mobile */}
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-10 md:mb-16"
             variants={containerVariants}
           >
-            <div className="inline-flex items-center justify-center mb-4">
-              <span className="h-1 w-8 bg-blue-600 rounded"></span>
-              <p className="mx-3 text-blue-600 font-medium">Success Stories</p>
-              <span className="h-1 w-8 bg-blue-600 rounded"></span>
+            <div className="inline-flex items-center justify-center mb-3 md:mb-4">
+              <span className="h-1 w-6 md:w-8 bg-blue-600 rounded"></span>
+              <p className="mx-2 md:mx-3 text-sm md:text-base text-blue-600 font-medium">
+                Success Stories
+              </p>
+              <span className="h-1 w-6 md:w-8 bg-blue-600 rounded"></span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl md:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 md:mb-6 px-2">
               What Our Clients Say About{" "}
               <span className="text-blue-600">DriveXpert AI</span>
             </h2>
 
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base md:text-xl text-gray-600 max-w-2xl mx-auto px-2">
               Discover how driving schools across UAE are transforming their
               operations and achieving unprecedented results.
             </p>
           </motion.div>
 
-          {/* Testimonial carousel */}
-          <div className="relative">
+          {/* Testimonial carousel - Adjusted for mobile */}
+          <div className="relative px-2">
             <AnimatePresence mode="wait" custom={currentIndex}>
               <motion.div
                 key={currentIndex}
@@ -170,12 +172,13 @@ const Testimonials = () => {
                 }}
                 className="max-w-4xl mx-auto"
               >
-                <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 relative">
-                  <Quote className="absolute top-8 left-8 w-10 h-10 text-blue-100" />
+                <div className="bg-white rounded-2xl shadow-xl p-5 md:p-8 lg:p-12 relative">
+                  <Quote className="absolute top-5 left-5 md:top-8 md:left-8 w-6 h-6 md:w-10 md:h-10 text-blue-100" />
 
-                  <div className="flex flex-wrap items-center gap-8">
+                  {/* Flex column on mobile, row on larger screens */}
+                  <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 pt-4">
                     <motion.div
-                      className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0"
+                      className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden flex-shrink-0"
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.3 }}
                     >
@@ -186,12 +189,12 @@ const Testimonials = () => {
                       />
                     </motion.div>
 
-                    <div className="flex-1">
-                      <div className="flex items-center mb-4">
+                    <div className="flex-1 text-center md:text-left">
+                      <div className="flex justify-center md:justify-start items-center mb-3 md:mb-4">
                         {Array.from({ length: 5 }).map((_, i) => (
                           <Star
                             key={i}
-                            className={`w-5 h-5 ${
+                            className={`w-4 h-4 md:w-5 md:h-5 ${
                               i < testimonialData[currentIndex].rating
                                 ? "text-yellow-400 fill-current"
                                 : "text-gray-300"
@@ -200,15 +203,15 @@ const Testimonials = () => {
                         ))}
                       </div>
 
-                      <p className="text-gray-800 text-lg md:text-xl leading-relaxed mb-6">
+                      <p className="text-gray-800 text-base md:text-lg lg:text-xl leading-relaxed mb-4 md:mb-6">
                         "{testimonialData[currentIndex].content}"
                       </p>
 
                       <div>
-                        <h4 className="font-bold text-xl text-gray-900">
+                        <h4 className="font-bold text-lg md:text-xl text-gray-900">
                           {testimonialData[currentIndex].name}
                         </h4>
-                        <p className="text-gray-600">
+                        <p className="text-sm md:text-base text-gray-600">
                           {testimonialData[currentIndex].role},{" "}
                           {testimonialData[currentIndex].company}
                         </p>
@@ -219,29 +222,29 @@ const Testimonials = () => {
               </motion.div>
             </AnimatePresence>
 
-            {/* Navigation buttons */}
+            {/* Navigation buttons - Positioned closer on mobile */}
             <button
               onClick={prevTestimonial}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-shadow group"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 md:-translate-x-4 lg:-translate-x-12 bg-white rounded-full p-2 md:p-3 shadow-lg hover:shadow-xl transition-shadow group"
             >
-              <ChevronLeft className="w-6 h-6 text-gray-600 group-hover:text-blue-600 transition-colors" />
+              <ChevronLeft className="w-4 h-4 md:w-6 md:h-6 text-gray-600 group-hover:text-blue-600 transition-colors" />
             </button>
             <button
               onClick={nextTestimonial}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-shadow group"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 md:translate-x-4 lg:translate-x-12 bg-white rounded-full p-2 md:p-3 shadow-lg hover:shadow-xl transition-shadow group"
             >
-              <ChevronRight className="w-6 h-6 text-gray-600 group-hover:text-blue-600 transition-colors" />
+              <ChevronRight className="w-4 h-4 md:w-6 md:h-6 text-gray-600 group-hover:text-blue-600 transition-colors" />
             </button>
 
             {/* Dots indicator */}
-            <div className="flex justify-center space-x-2 mt-8">
+            <div className="flex justify-center space-x-2 mt-6 md:mt-8">
               {testimonialData.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                     index === currentIndex
-                      ? "bg-blue-600 w-6"
+                      ? "bg-blue-600 w-5 md:w-6"
                       : "bg-gray-300 hover:bg-gray-400"
                   }`}
                 />
@@ -249,9 +252,9 @@ const Testimonials = () => {
             </div>
           </div>
 
-          {/* Trust indicators */}
+          {/* Trust indicators - 2 columns on mobile, 4 on larger screens */}
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-24"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mt-16 md:mt-24"
             initial={{ opacity: 0, y: 40 }}
             animate={{
               opacity: inView ? 1 : 0,
@@ -267,14 +270,16 @@ const Testimonials = () => {
             ].map((stat, index) => (
               <motion.div
                 key={index}
-                className="text-center"
+                className="text-center p-3 md:p-4"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
               >
-                <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
+                <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-blue-600 mb-1 md:mb-2">
                   {stat.number}
                 </div>
-                <div className="text-gray-600">{stat.label}</div>
+                <div className="text-sm md:text-base text-gray-600">
+                  {stat.label}
+                </div>
               </motion.div>
             ))}
           </motion.div>
