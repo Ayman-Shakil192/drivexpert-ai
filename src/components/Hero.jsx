@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link } from "react-scroll";
 import { Box, Button, HStack } from "@chakra-ui/react";
 import {
   ArrowRight,
@@ -133,16 +133,21 @@ const Hero = () => {
                     spacing={4}
                     className="justify-center lg:justify-start flex-wrap gap-y-4"
                   >
-                    <Button
-                      as={Link}
-                      to="#contact"
-                      size="lg"
-                      variant="solid"
-                      className="!bg-blue-600 hover:!bg-blue-700 !text-white !px-8 !py-4 !rounded-lg !transition-all !duration-300 !transform hover:!scale-105"
-                      rightIcon={<ArrowRight className="w-5 h-5" />}
+                    <Link
+                      to="contact"
+                      smooth={true}
+                      duration={2000}
+                      offset={-50}
                     >
-                      Request Demo
-                    </Button>
+                      <Button
+                        size="lg"
+                        variant="solid"
+                        className="!bg-blue-600 hover:!bg-blue-700 !text-white !px-8 !py-4 !rounded-lg !transition-all !duration-300 !transform hover:!scale-105"
+                        rightIcon={<ArrowRight className="w-5 h-5" />}
+                      >
+                        Request Demo
+                      </Button>
+                    </Link>
                   </HStack>
                 </Box>
               </motion.div>
