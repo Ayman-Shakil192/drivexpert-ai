@@ -43,14 +43,14 @@ const Navbar = () => {
         scrolled ? "bg-white/95 backdrop-blur-lg shadow-lg" : "bg-transparent"
       } ${scrolled ? "py-2" : "py-4"}`}
     >
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo with left padding */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex items-center"
+            className="flex items-center pl-2 sm:pl-0"
           >
             <Link
               to="hero"
@@ -63,7 +63,7 @@ const Navbar = () => {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8 pr-2">
             {navigation.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -89,7 +89,7 @@ const Navbar = () => {
                         exit={{ opacity: 0, y: 10 }}
                         className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg overflow-hidden"
                       >
-                        {item.dropdown.map((dropItem, idx) => (
+                        {item.dropdown?.map((dropItem, idx) => (
                           <Link
                             key={idx}
                             to={dropItem.to}
@@ -121,8 +121,8 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Mobile menu button */}
-          <div className="flex lg:hidden">
+          {/* Mobile menu button with right padding */}
+          <div className="flex lg:hidden pr-2 sm:pr-0">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-md focus:outline-none transition-colors text-gray-700"
@@ -147,7 +147,7 @@ const Navbar = () => {
           transition={{ duration: 0.3 }}
           className="lg:hidden bg-white shadow-lg"
         >
-          <div className="px-4 pt-2 pb-3 space-y-1">
+          <div className="px-6 pt-2 pb-3 space-y-1">
             {navigation.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -170,7 +170,7 @@ const Navbar = () => {
                     </button>
                     {dropdownOpen && (
                       <div className="pl-6">
-                        {item.dropdown.map((dropItem, idx) => (
+                        {item.dropdown?.map((dropItem, idx) => (
                           <Link
                             key={idx}
                             to={dropItem.to}
