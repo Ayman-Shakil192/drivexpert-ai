@@ -43,9 +43,9 @@ const Navbar = () => {
         scrolled ? "bg-white/95 backdrop-blur-lg shadow-lg" : "bg-transparent"
       } ${scrolled ? "py-2" : "py-4"}`}
     >
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo - Fixed dimensions and object-fit for consistent rendering */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -58,7 +58,13 @@ const Navbar = () => {
               duration={500}
               className="cursor-pointer flex items-center space-x-2"
             >
-              <img src={logo} alt="Logo" className="w-30 h-12" />
+              <div className="w-34 h-10 overflow-hidden">
+                <img
+                  src={logo}
+                  alt="Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </Link>
           </motion.div>
 
@@ -87,19 +93,20 @@ const Navbar = () => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
-                        className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg overflow-hidden"
+                        className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg overflow-hidden z-10"
                       >
-                        {item.dropdown.map((dropItem, idx) => (
-                          <Link
-                            key={idx}
-                            to={dropItem.to}
-                            smooth={true}
-                            duration={500}
-                            className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                          >
-                            {dropItem.name}
-                          </Link>
-                        ))}
+                        {item.dropdown &&
+                          item.dropdown.map((dropItem, idx) => (
+                            <Link
+                              key={idx}
+                              to={dropItem.to}
+                              smooth={true}
+                              duration={500}
+                              className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                            >
+                              {dropItem.name}
+                            </Link>
+                          ))}
                       </motion.div>
                     )}
                   </div>
@@ -113,7 +120,6 @@ const Navbar = () => {
                     activeClass="text-blue-600"
                     className="flex items-center space-x-1 px-3 py-2 text-base font-medium rounded-lg cursor-pointer hover:bg-blue-50 transition-colors duration-300 text-gray-700 hover:text-blue-600"
                   >
-                    {item.icon}
                     <span>{item.name}</span>
                   </Link>
                 )}
@@ -138,23 +144,12 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu - With simpler animation for better cross-browser compatibility */}
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.3 }}
-          className="lg:hidden bg-white shadow-lg"
-        >
+        <div className="lg:hidden bg-white shadow-lg overflow-hidden">
           <div className="px-4 pt-2 pb-3 space-y-1">
             {navigation.map((item, index) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-              >
+              <div key={item.name} className="py-1">
                 {item.hasDropdown ? (
                   <div>
                     <button
@@ -168,7 +163,7 @@ const Navbar = () => {
                         }`}
                       />
                     </button>
-                    {dropdownOpen && (
+                    {dropdownOpen && item.dropdown && (
                       <div className="pl-6">
                         {item.dropdown.map((dropItem, idx) => (
                           <Link
@@ -196,14 +191,13 @@ const Navbar = () => {
                     className="flex items-center space-x-2 px-3 py-2 text-base font-medium text-gray-700 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors duration-300"
                     onClick={() => setIsOpen(false)}
                   >
-                    {item.icon}
                     <span>{item.name}</span>
                   </Link>
                 )}
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       )}
     </nav>
   );

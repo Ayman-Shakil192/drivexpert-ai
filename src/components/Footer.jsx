@@ -301,7 +301,7 @@ const Footer = () => {
           </Link>
         </div>
 
-        <p className="text-lg mb-6 max-w-4xl">
+        <p className="text-lg mb-6 max-w-5xl">
           Transforming driving education across UAE with cutting-edge AI
           technology. Streamline operations, enhance training, and deliver
           exceptional learning experiences.
