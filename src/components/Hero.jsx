@@ -33,7 +33,7 @@ const Hero = () => {
   const keyFeatures = [
     {
       icon: Car,
-      text: "Smart Scheduling",
+      text: "Smart solutions",
       color: "text-blue-600",
     },
     {

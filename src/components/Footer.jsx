@@ -38,7 +38,7 @@ const Footer = () => {
   ];
 
   const services = [
-    { name: "AI Scheduling", href: "#" },
+    { name: "AI solutions", href: "#" },
     { name: "Performance Analytics", href: "#" },
     { name: "Student Management", href: "#" },
     { name: "Fleet Management", href: "#" },

@@ -32,7 +32,7 @@ const Features = () => {
   const featureData = [
     {
       icon: <Brain className="w-10 h-10" />,
-      title: "AI-Powered Scheduling",
+      title: "AI-Powered solutions",
       description:
         "Optimize instructor schedules and student bookings with intelligent algorithms. Maximize resource utilization and minimize wait times.",
       bgColor: "bg-blue-50",
