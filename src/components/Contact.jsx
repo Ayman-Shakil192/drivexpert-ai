@@ -11,14 +11,12 @@ import {
   MessageSquare,
   User,
   Building,
-  Globe,
   Shield,
   Calendar,
   Bot,
   Star,
   ArrowRight,
 } from "lucide-react";
-import CustomToast from "./CustomToast";
 import {
   Box,
   Button,
@@ -43,16 +41,6 @@ import {
 import emailjs from "@emailjs/browser";
 
 const Contact = () => {
-  const chakraToast = useToast();
-
-  const [customToast, setCustomToast] = useState({
-    show: false,
-    status: "success",
-    title: "",
-    description: "",
-    isClosing: false,
-  });
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -63,37 +51,6 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
-
-  const showCustomToast = (status, title, description) => {
-    setCustomToast({
-      show: true,
-      status,
-      title,
-      description,
-      isClosing: false,
-    });
-
-    setTimeout(() => {
-      closeCustomToast();
-    }, 5000);
-  };
-
-  const closeCustomToast = () => {
-    setCustomToast((prev) => ({
-      ...prev,
-      isClosing: true,
-    }));
-
-    setTimeout(() => {
-      setCustomToast({
-        show: false,
-        status: "success",
-        title: "",
-        description: "",
-        isClosing: false,
-      });
-    }, 400);
-  };
 
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -148,22 +105,6 @@ const Contact = () => {
 
       setSubmitStatus("success");
 
-      showCustomToast(
-        "success",
-        "Message sent!",
-        "Thank you for contacting us. We'll get back to you soon."
-      );
-
-      chakraToast({
-        title: "Message sent!",
-        description: "Thank you for contacting us. We'll get back to you soon.",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom-right",
-        variant: "solid",
-      });
-
       setFormData({
         name: "",
         email: "",
@@ -173,25 +114,7 @@ const Contact = () => {
         message: "",
       });
     } catch (error) {
-      console.error("Error sending email:", error);
       setSubmitStatus("error");
-
-      showCustomToast(
-        "error",
-        "Message not sent",
-        "There was an error sending your message. Please try again."
-      );
-
-      chakraToast({
-        title: "Message not sent",
-        description:
-          "There was an error sending your message. Please try again.",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom-right",
-        variant: "solid",
-      });
     } finally {
       setIsSubmitting(false);
       setTimeout(() => setSubmitStatus(null), 5000);
@@ -263,16 +186,6 @@ const Contact = () => {
       overflow="hidden"
       ref={ref}
     >
-      {/* Custom Toast Notification */}
-      {customToast.show && (
-        <CustomToast
-          status={customToast.status}
-          title={customToast.title}
-          description={customToast.description}
-          onClose={closeCustomToast}
-          isClosing={customToast.isClosing}
-        />
-      )}
       {/* Background decorations */}
       <Box position="absolute" top={0} left={0} right={0} bottom={0}>
         <Box
