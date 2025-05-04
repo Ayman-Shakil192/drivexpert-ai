@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 import logo from "../assets/images/logo-text-with-icon-removebg-preview.png";
@@ -9,13 +9,21 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  // Navigation items with icons
   const navigation = [
     { name: "About", to: "about" },
     { name: "Features", to: "features" },
-    { name: "Testimonials", to: "testimonials" },
-    { name: "Contact", to: "contact" },
+    {
+      name: "Testimonials",
+      to: "testimonials",
+    },
+    {
+      name: "Contact",
+      to: "contact",
+    },
   ];
 
+  // Handle scroll event to change navbar appearance
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -24,6 +32,7 @@ const Navbar = () => {
         setScrolled(false);
       }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -34,8 +43,9 @@ const Navbar = () => {
         scrolled ? "bg-white/95 backdrop-blur-lg shadow-lg" : "bg-transparent"
       } ${scrolled ? "py-2" : "py-4"}`}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto">
         <div className="flex items-center justify-between">
+          {/* Logo */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -48,13 +58,7 @@ const Navbar = () => {
               duration={500}
               className="cursor-pointer flex items-center space-x-2"
             >
-              <div className="w-34 h-10 overflow-hidden">
-                <img
-                  src={logo}
-                  alt="Logo"
-                  className="w-full h-full object-contain"
-                />
-              </div>
+              <img src={logo} alt="Logo" className="w-30 h-10" />
             </Link>
           </motion.div>
 
@@ -83,20 +87,19 @@ const Navbar = () => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
-                        className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg overflow-hidden z-10"
+                        className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg overflow-hidden"
                       >
-                        {item.dropdown &&
-                          item.dropdown.map((dropItem, idx) => (
-                            <Link
-                              key={idx}
-                              to={dropItem.to}
-                              smooth={true}
-                              duration={500}
-                              className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                            >
-                              {dropItem.name}
-                            </Link>
-                          ))}
+                        {item.dropdown.map((dropItem, idx) => (
+                          <Link
+                            key={idx}
+                            to={dropItem.to}
+                            smooth={true}
+                            duration={500}
+                            className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                          >
+                            {dropItem.name}
+                          </Link>
+                        ))}
                       </motion.div>
                     )}
                   </div>
@@ -110,6 +113,7 @@ const Navbar = () => {
                     activeClass="text-blue-600"
                     className="flex items-center space-x-1 px-3 py-2 text-base font-medium rounded-lg cursor-pointer hover:bg-blue-50 transition-colors duration-300 text-gray-700 hover:text-blue-600"
                   >
+                    {item.icon}
                     <span>{item.name}</span>
                   </Link>
                 )}
@@ -136,10 +140,21 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 w-full bg-white shadow-lg z-40 lg:hidden">
-          <div className="flex flex-col items-start px-4 pt-2 pb-3 space-y-1">
-            {navigation.map((item) => (
-              <div key={item.name} className="w-full">
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.3 }}
+          className="lg:hidden bg-white shadow-lg"
+        >
+          <div className="px-4 pt-2 pb-3 space-y-1">
+            {navigation.map((item, index) => (
+              <motion.div
+                key={item.name}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+              >
                 {item.hasDropdown ? (
                   <div>
                     <button
@@ -153,7 +168,7 @@ const Navbar = () => {
                         }`}
                       />
                     </button>
-                    {dropdownOpen && item.dropdown && (
+                    {dropdownOpen && (
                       <div className="pl-6">
                         {item.dropdown.map((dropItem, idx) => (
                           <Link
@@ -178,16 +193,17 @@ const Navbar = () => {
                     offset={-70}
                     duration={500}
                     activeClass="text-blue-600"
-                    className="w-full text-left px-3 py-2 text-base font-medium text-gray-700 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors duration-300"
+                    className="flex items-center space-x-2 px-3 py-2 text-base font-medium text-gray-700 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors duration-300"
                     onClick={() => setIsOpen(false)}
                   >
-                    {item.name}
+                    {item.icon}
+                    <span>{item.name}</span>
                   </Link>
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       )}
     </nav>
   );
