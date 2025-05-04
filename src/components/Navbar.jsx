@@ -66,7 +66,7 @@ const Navbar = () => {
               duration={500}
               className="cursor-pointer flex items-center space-x-2"
             >
-              <img src={logo} alt="Logo" className="w-30 h-14" />
+              <img src={logo} alt="Logo" className="w-30 h-12" />
             </Link>
           </motion.div>
 
