@@ -10,7 +10,6 @@ import {
   Shield,
   Users,
   Award,
-  CheckCircle,
   Target,
   Brain,
   Car,
@@ -138,7 +137,7 @@ const About = () => {
     {
       year: "2020",
       title: "First AI Solution",
-      description: "Launched intelligent scheduling system for driving schools",
+      description: "Launched intelligent solutions system for driving schools",
     },
     {
       year: "2021",
@@ -365,16 +364,19 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Timeline Section */}
+          {/* Timeline Section - Enhanced for better mobile responsiveness and animations */}
           <motion.div variants={itemVariants} className="mb-24">
             <h3 className="text-3xl font-bold text-gray-900 text-center mb-12">
               Our Journey
             </h3>
 
-            {/* Modern Timeline Design */}
+            {/* Enhanced Responsive Timeline Design */}
             <div className="relative max-w-5xl mx-auto">
-              {/* Center Line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-blue-200 rounded-full" />
+              {/* Center Line - Hidden on mobile */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-blue-200 rounded-full hidden md:block" />
+
+              {/* Responsive Timeline for mobile devices */}
+              <div className="block md:hidden w-1 bg-blue-200 rounded-full absolute left-8 top-0 bottom-0"></div>
 
               {milestones.map((milestone, index) => {
                 // Define color and icon based on the milestone type
@@ -405,57 +407,140 @@ const About = () => {
                   },
                 ][index % 6];
 
-                return (
-                  <div key={index} className="mb-20 relative">
-                    <motion.div
-                      className={`flex ${
-                        index % 2 === 0 ? "flex-row" : "flex-row-reverse"
-                      } items-center`}
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={
-                        inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
-                      }
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                    >
-                      {/* Content */}
-                      <div
-                        className={`w-5/12 ${
-                          index % 2 === 0 ? "text-right pr-8" : "text-left pl-8"
-                        }`}
-                      >
-                        <motion.div
-                          className="bg-white p-6 rounded-xl shadow-lg border border-gray-100"
-                          whileHover={{
-                            y: -5,
-                            boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-                          }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <h4 className="text-xl font-bold text-gray-900 mb-2">
-                            {milestone.title}
-                          </h4>
-                          <p className="text-gray-600">
-                            {milestone.description}
-                          </p>
-                        </motion.div>
-                      </div>
+                // Create individual refs for each milestone to trigger animations independently
+                const [milestoneRef, milestoneInView] = useInView({
+                  triggerOnce: true,
+                  threshold: 0.2,
+                });
 
-                      {/* Center Circle */}
-                      <div className="absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center z-10">
+                return (
+                  <div
+                    key={index}
+                    className="mb-20 relative"
+                    ref={milestoneRef}
+                  >
+                    {/* Desktop Layout */}
+                    <div className="hidden md:block">
+                      <motion.div
+                        className={`flex ${
+                          index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                        } items-center`}
+                        initial={{
+                          opacity: 0,
+                          x: index % 2 === 0 ? -100 : 100,
+                        }}
+                        animate={
+                          milestoneInView
+                            ? { opacity: 1, x: 0 }
+                            : { opacity: 0, x: index % 2 === 0 ? -100 : 100 }
+                        }
+                        transition={{
+                          duration: 0.7,
+                          ease: "easeOut",
+                        }}
+                      >
+                        {/* Content */}
+                        <div
+                          className={`w-5/12 ${
+                            index % 2 === 0
+                              ? "text-right pr-8"
+                              : "text-left pl-8"
+                          }`}
+                        >
+                          <motion.div
+                            className="bg-white p-6 rounded-xl shadow-lg border border-gray-100"
+                            whileHover={{
+                              y: -5,
+                              boxShadow:
+                                "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+                            }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <h4 className="text-xl font-bold text-gray-900 mb-2">
+                              {milestone.title}
+                            </h4>
+                            <p className="text-gray-600">
+                              {milestone.description}
+                            </p>
+                          </motion.div>
+                        </div>
+
+                        {/* Center Circle */}
+                        <div className="absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center z-10">
+                          <motion.div
+                            className={`${milestoneStyles.color} w-14 h-14 rounded-full flex items-center justify-center shadow-lg border-4 border-white`}
+                            whileHover={{ scale: 1.2 }}
+                            initial={{ scale: 0 }}
+                            animate={
+                              milestoneInView ? { scale: 1 } : { scale: 0 }
+                            }
+                            transition={{
+                              duration: 0.5,
+                              delay: 0.2,
+                            }}
+                          >
+                            {milestoneStyles.icon}
+                          </motion.div>
+                          <div className="bg-blue-600 text-white font-bold py-1 px-4 rounded-full mt-2 text-sm shadow-md">
+                            {milestone.year}
+                          </div>
+                        </div>
+
+                        {/* Empty space for the other side */}
+                        <div className="w-5/12"></div>
+                      </motion.div>
+                    </div>
+
+                    {/* Mobile/Tablet Layout - Fixed alignment */}
+                    <motion.div
+                      className="md:hidden flex items-start"
+                      initial={{ opacity: 0, x: -50 }}
+                      animate={
+                        milestoneInView
+                          ? { opacity: 1, x: -25 }
+                          : { opacity: 0, x: -50 }
+                      }
+                      transition={{
+                        duration: 0.5,
+                        ease: "easeOut",
+                      }}
+                    >
+                      {/* Left Circle - Fixed alignment with the line */}
+                      <div className="flex-shrink-0 z-10 flex flex-col items-center ml-8 mr-4 mt-3 relative">
                         <motion.div
-                          className={`${milestoneStyles.color} w-14 h-14 rounded-full flex items-center justify-center shadow-lg border-4 border-white`}
-                          whileHover={{ scale: 1.2 }}
-                          transition={{ duration: 0.3 }}
+                          className={`${milestoneStyles.color} w-12 h-12 rounded-full flex items-center justify-center shadow-md border-4 border-white`}
+                          initial={{ scale: 0 }}
+                          animate={
+                            milestoneInView ? { scale: 1 } : { scale: 0 }
+                          }
+                          transition={{
+                            duration: 0.5,
+                            delay: 0.1,
+                          }}
                         >
                           {milestoneStyles.icon}
                         </motion.div>
-                        <div className="bg-blue-600 text-white font-bold py-1 px-4 rounded-full mt-2 text-sm shadow-md">
+                        <div className="bg-blue-600 text-white font-bold py-1 px-3 rounded-full mt-2 text-xs shadow-md text-center">
                           {milestone.year}
                         </div>
                       </div>
 
-                      {/* Empty space for the other side */}
-                      <div className="w-5/12"></div>
+                      {/* Content */}
+                      <motion.div
+                        className="bg-white p-5 rounded-xl shadow-lg border border-gray-100 flex-1"
+                        whileHover={{
+                          y: -3,
+                          boxShadow: "0 15px 30px -10px rgba(0, 0, 0, 0.2)",
+                        }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <h4 className="text-lg font-bold text-gray-900 mb-2">
+                          {milestone.title}
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          {milestone.description}
+                        </p>
+                      </motion.div>
                     </motion.div>
                   </div>
                 );
@@ -473,7 +558,7 @@ const About = () => {
             </div>
             <div className="relative z-10">
               <h3 className="text-2xl md:text-3xl font-bold mb-6">
-                Ready to Transform Your Buisness?
+                Ready to Transform Your Business?
               </h3>
               <p className="text-lg mb-8 max-w-2xl mx-auto">
                 Join hundreds of driving schools across UAE that are
