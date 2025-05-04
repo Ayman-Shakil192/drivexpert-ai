@@ -7,7 +7,6 @@ import {
   MapPin,
   Send,
   CheckCircle,
-  AlertCircle,
   Clock,
   MessageSquare,
   User,
@@ -19,6 +18,7 @@ import {
   Star,
   ArrowRight,
 } from "lucide-react";
+import CustomToast from "./CustomToast";
 import {
   Box,
   Button,
@@ -37,12 +37,22 @@ import {
   VStack,
   HStack,
   Grid,
-  GridItem,
   chakra,
-  IconButton,
+  useToast,
 } from "@chakra-ui/react";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
+  const chakraToast = useToast();
+
+  const [customToast, setCustomToast] = useState({
+    show: false,
+    status: "success",
+    title: "",
+    description: "",
+    isClosing: false,
+  });
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -53,6 +63,37 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+
+  const showCustomToast = (status, title, description) => {
+    setCustomToast({
+      show: true,
+      status,
+      title,
+      description,
+      isClosing: false,
+    });
+
+    setTimeout(() => {
+      closeCustomToast();
+    }, 5000);
+  };
+
+  const closeCustomToast = () => {
+    setCustomToast((prev) => ({
+      ...prev,
+      isClosing: true,
+    }));
+
+    setTimeout(() => {
+      setCustomToast({
+        show: false,
+        status: "success",
+        title: "",
+        description: "",
+        isClosing: false,
+      });
+    }, 400);
+  };
 
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -66,14 +107,63 @@ const Contact = () => {
     });
   };
 
+  const subjectOptions = {
+    demo: "Demo Request",
+    pricing: "Pricing Information Request",
+    technical: "Technical Support Request",
+    partnership: "Partnership Opportunity",
+    other: "General Inquiry",
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const currentDate = new Date().toLocaleString("en-AE", {
+        timeZone: "Asia/Dubai",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        from_company: formData.company,
+        from_phone: formData.phone,
+        subject: subjectOptions[formData.subject] || formData.subject,
+        message: formData.message,
+        submission_date: currentDate,
+        to_name: "DriveXpert Team",
+      };
+
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
       setSubmitStatus("success");
+
+      showCustomToast(
+        "success",
+        "Message sent!",
+        "Thank you for contacting us. We'll get back to you soon."
+      );
+
+      chakraToast({
+        title: "Message sent!",
+        description: "Thank you for contacting us. We'll get back to you soon.",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom-right",
+        variant: "solid",
+      });
+
       setFormData({
         name: "",
         email: "",
@@ -83,7 +173,25 @@ const Contact = () => {
         message: "",
       });
     } catch (error) {
+      console.error("Error sending email:", error);
       setSubmitStatus("error");
+
+      showCustomToast(
+        "error",
+        "Message not sent",
+        "There was an error sending your message. Please try again."
+      );
+
+      chakraToast({
+        title: "Message not sent",
+        description:
+          "There was an error sending your message. Please try again.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom-right",
+        variant: "solid",
+      });
     } finally {
       setIsSubmitting(false);
       setTimeout(() => setSubmitStatus(null), 5000);
@@ -155,6 +263,16 @@ const Contact = () => {
       overflow="hidden"
       ref={ref}
     >
+      {/* Custom Toast Notification */}
+      {customToast.show && (
+        <CustomToast
+          status={customToast.status}
+          title={customToast.title}
+          description={customToast.description}
+          onClose={closeCustomToast}
+          isClosing={customToast.isClosing}
+        />
+      )}
       {/* Background decorations */}
       <Box position="absolute" top={0} left={0} right={0} bottom={0}>
         <Box
@@ -204,7 +322,7 @@ const Contact = () => {
 
             <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold text-gray-900 mb-6">
               Ready to Transform Your{" "}
-              <span className="text-blue-600">Buisness?</span>
+              <span className="text-blue-600">Business?</span>
             </h2>
 
             <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
