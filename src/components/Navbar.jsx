@@ -2,15 +2,7 @@ import { React, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 import logo from "../assets/images/logo-text-with-icon-removebg-preview.png";
-import {
-  Menu,
-  X,
-  Car,
-  Shield,
-  Award,
-  BookOpen,
-  ChevronDown,
-} from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
