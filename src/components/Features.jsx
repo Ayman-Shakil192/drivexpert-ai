@@ -52,7 +52,7 @@ const Features = () => {
       icon: <LineChart className="w-10 h-10" />,
       title: "Performance Analytics",
       description:
-        "Real-time tracking of student progress, instructor performance, and institute metrics. Make data-driven decisions for better outcomes.",
+        "Real-time tracking of student progress, instructor performance, and institute metrics. Make data-driven decisions.",
       bgColor: "bg-green-50",
       iconColor: "text-green-600",
       delay: 0.3,
@@ -112,7 +112,7 @@ const Features = () => {
   return (
     <section
       id="features"
-      className="py-24 px-4 bg-white relative overflow-hidden"
+      className="py-24 px-8 bg-white relative overflow-hidden"
       ref={ref}
     >
       {/* Background pattern */}
@@ -202,7 +202,7 @@ const Features = () => {
                 },
                 {
                   icon: <FileText className="w-8 h-8" />,
-                  label: "Digital Documentation",
+                  label: "Digital Reports",
                   color: "text-red-600",
                 },
                 {

@@ -26,8 +26,8 @@ const Testimonials = () => {
     },
     {
       name: "Sarah Abdullah",
-      role: "Operations Manager",
-      company: "Emirates Driving Institute",
+      role: "Buisness Analyst",
+      company: "Excellence Driving",
       content:
         "Thanks to DriveXpert AI, We've improved our instructor efficiency by 40% and student pass rates by 25%.",
       rating: 5,
@@ -44,8 +44,8 @@ const Testimonials = () => {
     },
     {
       name: "Fatima Al Zaabi",
-      role: "Training Coordinator",
-      company: "Abu Dhabi Driving Center",
+      role: "Senior Manager",
+      company: "ECO Drive",
       content:
         "The personalized learning modules have been a game-changer. Our students learn faster and retain information better than ever before.",
       rating: 5,
@@ -110,7 +110,7 @@ const Testimonials = () => {
   return (
     <section
       id="testimonials"
-      className="py-16 md:py-24 px-4 bg-gradient-to-br from-blue-50 to-white overflow-hidden"
+      className="py-16 md:py-24 px-8 bg-gradient-to-br from-blue-50 to-white overflow-hidden"
       ref={ref}
     >
       <div className="container mx-auto">

@@ -141,15 +141,13 @@ const Contact = () => {
       icon: <MapPin className="w-6 h-6" />,
       title: "Visit Us",
       content: "Dubai Investment Park, Dubai, UAE",
-      details: "Office 201, Building A",
       bgColor: useColorModeValue("blue.50", "blue.900"),
       iconColor: useColorModeValue("blue.600", "blue.400"),
     },
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Call Us",
-      content: "+971 4 555 1234",
-      details: "Mon-Sat: 9AM-7PM",
+      content: "+971 4 555 1234 ",
       bgColor: useColorModeValue("green.50", "green.900"),
       iconColor: useColorModeValue("green.600", "green.400"),
     },
@@ -157,7 +155,6 @@ const Contact = () => {
       icon: <Mail className="w-6 h-6" />,
       title: "Email Us",
       content: "support@drivexpert.ae",
-      details: "24/7 Support",
       bgColor: useColorModeValue("purple.50", "purple.900"),
       iconColor: useColorModeValue("purple.600", "purple.400"),
     },
@@ -165,7 +162,6 @@ const Contact = () => {
       icon: <Clock className="w-6 h-6" />,
       title: "Business Hours",
       content: "9:00 AM - 7:00 PM",
-      details: "Saturday - Thursday",
       bgColor: useColorModeValue("orange.50", "orange.900"),
       iconColor: useColorModeValue("orange.600", "orange.400"),
     },
@@ -180,7 +176,7 @@ const Contact = () => {
     <Box
       id="contact"
       py={24}
-      px={4}
+      px={8}
       bgGradient={bgGradient}
       position="relative"
       overflow="hidden"
@@ -283,9 +279,7 @@ const Contact = () => {
                       <chakra.h3 fontSize="2xl" fontWeight="bold">
                         Send us a message
                       </chakra.h3>
-                      <chakra.p color="gray.600">
-                        We'll get back to you within 24 hours
-                      </chakra.p>
+                      <chakra.p color="gray.600">Let's connect!</chakra.p>
                     </Box>
                   </HStack>
 
@@ -306,7 +300,7 @@ const Contact = () => {
                               name="name"
                               value={formData.name}
                               onChange={handleChange}
-                              placeholder="John Doe"
+                              placeholder="Your Full Name"
                               h={12}
                               borderRadius="lg"
                               focusBorderColor="blue.500"
@@ -326,7 +320,7 @@ const Contact = () => {
                               type="email"
                               value={formData.email}
                               onChange={handleChange}
-                              placeholder="john@company.com"
+                              placeholder="Your Email Address"
                               h={12}
                               borderRadius="lg"
                               focusBorderColor="blue.500"
@@ -345,7 +339,7 @@ const Contact = () => {
                               name="company"
                               value={formData.company}
                               onChange={handleChange}
-                              placeholder="Your Driving School"
+                              placeholder="Your Company Name"
                               h={12}
                               borderRadius="lg"
                               focusBorderColor="blue.500"
@@ -365,7 +359,7 @@ const Contact = () => {
                               type="tel"
                               value={formData.phone}
                               onChange={handleChange}
-                              placeholder="+971 50 123 4567"
+                              placeholder="Your Phone Number"
                               h={12}
                               borderRadius="lg"
                               focusBorderColor="blue.500"
@@ -402,7 +396,7 @@ const Contact = () => {
                         <InputGroup>
                           <Textarea
                             name="message"
-                            height={175}
+                            height={93}
                             value={formData.message}
                             onChange={handleChange}
                             placeholder="How can we help you?"
@@ -522,7 +516,7 @@ const Contact = () => {
                       border="1px solid"
                       borderColor="gray.100"
                     >
-                      <Box bg={info.bgColor} p={3} borderRadius="lg">
+                      <Box bg={info.bgColor} p={4} borderRadius="lg">
                         <chakra.span color={info.iconColor}>
                           {info.icon}
                         </chakra.span>
@@ -531,11 +525,8 @@ const Contact = () => {
                         <chakra.h4 fontWeight="bold" fontSize="lg" mb={1}>
                           {info.title}
                         </chakra.h4>
-                        <chakra.p color="gray.700" fontWeight="medium">
+                        <chakra.p color="gray.500" fontWeight="sm">
                           {info.content}
-                        </chakra.p>
-                        <chakra.p fontSize="sm" color="gray.500">
-                          {info.details}
                         </chakra.p>
                       </Box>
                     </Box>
@@ -591,7 +582,7 @@ const Contact = () => {
                   {[
                     {
                       value: "100%",
-                      label: "Privacy Secure",
+                      label: "Secure",
                       icon: <Shield />,
                       color: "green.600",
                     },

@@ -248,7 +248,8 @@ const Footer = () => {
             textAlign="center"
             md={{ textAlign: "left" }}
           >
-            Subscribe to our newsletter for updates and exclusive offers.
+            Subscribe to our newsletter for the latest updates, industry news,
+            and exclusive offers.
           </Text>
           <InputGroup size="md">
             <Input
