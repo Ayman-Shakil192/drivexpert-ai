@@ -397,7 +397,7 @@ const Contact = () => {
                         <InputGroup>
                           <Textarea
                             name="message"
-                            height={93}
+                            height={95}
                             value={formData.message}
                             onChange={handleChange}
                             placeholder="How can we help you?"
