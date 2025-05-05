@@ -141,7 +141,7 @@ const Contact = () => {
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Visit Us",
-      content: "Dubai Investment Park, Dubai, UAE",
+      content: "Dubai Investment Park, Dubai",
       bgColor: useColorModeValue("blue.50", "blue.900"),
       iconColor: useColorModeValue("blue.600", "blue.400"),
     },
@@ -212,7 +212,7 @@ const Contact = () => {
           opacity={0.2}
           transform="translate(50%, 50%)"
           animation="blob 7s infinite"
-          animationDelay="2s"
+          className="animation-delay-2000"
         />
       </Box>
 

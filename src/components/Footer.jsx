@@ -151,7 +151,7 @@ const Footer = () => {
                 <li key={index}>
                   <Link
                     to={link.to}
-                    smooth={true}
+                    smooth="true"
                     duration={500}
                     offset={-70}
                     className="hover:text-blue-400 transition-colors duration-300 flex items-center group"
@@ -339,7 +339,7 @@ const Footer = () => {
               <li key={index}>
                 <Link
                   to={link.to}
-                  smooth={true}
+                  smooth="true"
                   duration={500}
                   offset={-70}
                   className="hover:text-blue-400 transition-colors duration-300 flex items-center group"

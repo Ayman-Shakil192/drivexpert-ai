@@ -97,7 +97,7 @@ const Hero = () => {
                   spacing={4}
                   className="justify-center flex-wrap gap-y-4"
                 >
-                  <Link to="contact" smooth duration={2000} offset={-50}>
+                  <Link to="contact" duration={2000} offset={-50} smooth="true">
                     <Button
                       size="lg"
                       variant="solid"
@@ -132,7 +132,7 @@ const Hero = () => {
         </div>
       </motion.div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes blob {
           0% {
             transform: translate(0px, 0px) scale(1);

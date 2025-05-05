@@ -54,7 +54,7 @@ const Navbar = () => {
           >
             <Link
               to="hero"
-              smooth={true}
+              smooth="true"
               duration={500}
               className="cursor-pointer flex items-center space-x-2"
             >
@@ -93,7 +93,7 @@ const Navbar = () => {
                           <Link
                             key={idx}
                             to={dropItem.to}
-                            smooth={true}
+                            smooth="true"
                             duration={500}
                             className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
                           >
@@ -107,7 +107,7 @@ const Navbar = () => {
                   <Link
                     to={item.to}
                     spy={true}
-                    smooth={true}
+                    smooth="true"
                     offset={-70}
                     duration={500}
                     activeClass="text-blue-600"
@@ -174,7 +174,7 @@ const Navbar = () => {
                           <Link
                             key={idx}
                             to={dropItem.to}
-                            smooth={true}
+                            smooth="true"
                             duration={500}
                             className="block px-3 py-2 text-gray-600 hover:text-blue-600"
                             onClick={() => setIsOpen(false)}
@@ -189,7 +189,7 @@ const Navbar = () => {
                   <Link
                     to={item.to}
                     spy={true}
-                    smooth={true}
+                    smooth="true"
                     offset={-70}
                     duration={500}
                     activeClass="text-blue-600"
