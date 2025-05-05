@@ -29,7 +29,7 @@ const Testimonials = () => {
       role: "Operations Manager",
       company: "Emirates Driving Institute",
       content:
-        "The analytics dashboard provides insights we never had before. We've improved our instructor efficiency by 40% and student pass rates by 25%.",
+        "Thanks to DriveXpert AI, We've improved our instructor efficiency by 40% and student pass rates by 25%.",
       rating: 5,
       image: test_two,
     },
