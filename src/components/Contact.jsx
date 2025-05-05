@@ -88,6 +88,7 @@ const Contact = () => {
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
+        reply_to: formData.email,
         from_company: formData.company,
         from_phone: formData.phone,
         subject: subjectOptions[formData.subject] || formData.subject,
@@ -430,7 +431,6 @@ const Contact = () => {
                       {submitStatus === "success" && (
                         <Alert status="success" borderRadius="lg">
                           <AlertIcon />
-                          <AlertTitle>Success!</AlertTitle>
                           <AlertDescription>
                             Message sent successfully! We'll get back to you
                             soon.
@@ -441,7 +441,6 @@ const Contact = () => {
                       {submitStatus === "error" && (
                         <Alert status="error" borderRadius="lg">
                           <AlertIcon />
-                          <AlertTitle>Error!</AlertTitle>
                           <AlertDescription>
                             Error sending message. Please try again.
                           </AlertDescription>
