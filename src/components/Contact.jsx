@@ -537,38 +537,52 @@ const Contact = () => {
                 <Box
                   w="full"
                   bg="#2563eb"
-                  borderRadius="2xl"
-                  p={8}
+                  borderRadius={{ base: "xl", md: "2xl" }}
+                  p={{ base: 4, sm: 6, md: 8 }}
                   color="white"
                   position="relative"
                   overflow="hidden"
                   shadow="2xl"
                 >
                   <Box position="relative" zIndex={10}>
-                    <chakra.h3 fontSize="2xl" fontWeight="bold" mb={6}>
+                    <chakra.h3
+                      fontSize={{ base: "xl", md: "2xl" }}
+                      fontWeight="bold"
+                      mb={{ base: 4, md: 6 }}
+                      textAlign={{ base: "center", md: "left" }}
+                    >
                       Why Choose DriveXpert AI?
                     </chakra.h3>
-                    <VStack spacing={4} align="stretch">
+                    <VStack spacing={{ base: 3, md: 4 }} align="stretch">
                       {[
                         "Customized solutions for UAE driving schools",
                         "Seamless integration with existing systems",
                         "24/7 support with dedicated account managers",
                         "ROI-driven results with measurable outcomes",
                       ].map((item, idx) => (
-                        <HStack key={idx}>
-                          <CheckCircle color="#4ADE80" />
-                          <chakra.span>{item}</chakra.span>
+                        <HStack
+                          key={idx}
+                          align="flex-start"
+                          spacing={{ base: 2, md: 3 }}
+                        >
+                          <Box flexShrink={0}>
+                            <CheckCircle color="#4ADE80" />
+                          </Box>
+                          <chakra.span fontSize={{ base: "sm", md: "md" }}>
+                            {item}
+                          </chakra.span>
                         </HStack>
                       ))}
                     </VStack>
 
                     <Button
-                      mt={8}
+                      mt={{ base: 6, md: 8 }}
                       w="full"
                       bg="white"
                       color="gray.900"
                       borderRadius="lg"
                       fontWeight="semibold"
+                      size={{ base: "md", md: "lg" }}
                       rightIcon={<ArrowRight />}
                       _hover={{ bg: "gray.100" }}
                     >

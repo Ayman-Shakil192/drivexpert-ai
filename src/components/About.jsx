@@ -376,7 +376,7 @@ const About = () => {
               <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-blue-200 rounded-full hidden md:block" />
 
               {/* Responsive Timeline for mobile devices */}
-              <div className="block md:hidden w-1 bg-blue-200 rounded-full absolute left-8 top-0 bottom-0"></div>
+              <div className="block md:hidden w-1 bg-blue-200 rounded-full absolute left-7 top-0 bottom-0"></div>
 
               {milestones.map((milestone, index) => {
                 // Define color and icon based on the milestone type
@@ -497,7 +497,7 @@ const About = () => {
                       initial={{ opacity: 0, x: -50 }}
                       animate={
                         milestoneInView
-                          ? { opacity: 1, x: -25 }
+                          ? { opacity: 1, x: -28 }
                           : { opacity: 0, x: -50 }
                       }
                       transition={{
