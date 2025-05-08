@@ -120,7 +120,7 @@ const About = () => {
     },
     {
       name: "Saad Shakil",
-      role: "Head of Customer Success",
+      role: "Head of Sales",
       image: lead_four,
       bio: "Customer experience leader passionate about client success",
       social: { linkedin: "#", twitter: "#" },
