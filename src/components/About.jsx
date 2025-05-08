@@ -106,7 +106,7 @@ const About = () => {
     },
     {
       name: "Md. Akil Ahmad",
-      role: "Vice President & Buisness Head",
+      role: "Vice President & CTO",
       image: lead_two,
       bio: "AI specialist with expertise in machine learning and automation",
       social: { linkedin: "#", twitter: "#" },
